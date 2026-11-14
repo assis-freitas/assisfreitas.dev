@@ -1,5 +1,6 @@
 ---
 import { projects } from '../data/site';
+import Icon from './Icon.astro';
 
 const open = projects.filter((p) => p.status === 'aberto');
 const priv = projects.filter((p) => p.status === 'privado');
@@ -15,7 +16,7 @@ const priv = projects.filter((p) => p.status === 'privado');
         [...open, ...priv].map((p, i) => (
           <article class="card" data-reveal style={`--i:${i}`}>
             <header>
-              <span class="emoji" aria-hidden="true">{p.emoji}</span>
+              <span class="icon"><Icon name={p.icon} /></span>
               <h3>{p.name}</h3>
               <span class:list={['badge', 'mono', p.status]}>{p.status}</span>
             </header>
@@ -91,8 +92,21 @@ const priv = projects.filter((p) => p.status === 'privado');
     gap: 10px;
     margin-bottom: 12px;
   }
-  .emoji {
-    font-size: 24px;
+  .icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--accent);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover .icon {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
   }
   h3 {
     font-family: var(--display);

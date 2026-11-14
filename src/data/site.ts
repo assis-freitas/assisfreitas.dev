@@ -1,3 +1,4 @@
+import type { IconName } from './icons';
 import {
   siDocker,
   siGithubactions,
@@ -83,7 +84,7 @@ export const stack: StackGroup[] = [
 
 export type Project = {
   name: string;
-  emoji: string;
+  icon: IconName;
   description: string;
   tags: string[];
   status: 'privado' | 'aberto';
@@ -94,7 +95,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: 'Chico AI',
-    emoji: '🤖',
+    icon: 'bot',
     description:
       'Assistente pessoal com dashboard e interface conversacional: integra Google Calendar e Gmail, cria lembretes e manda um digest diário de notícias.',
     tags: ['Vue 3', 'Spring Boot', 'Spring AI', 'PostgreSQL', 'Redis'],
@@ -102,7 +103,7 @@ export const projects: Project[] = [
   },
   {
     name: 'IA Learn',
-    emoji: '📚',
+    icon: 'book',
     description:
       'Plataforma de aprendizado multi-tenant, com controle de permissões por papel e armazenamento de arquivos em S3/MinIO.',
     tags: ['Laravel 13', 'Inertia', 'Vue 3', 'PostgreSQL'],
@@ -110,7 +111,7 @@ export const projects: Project[] = [
   },
   {
     name: 'TokenConverter',
-    emoji: '🪙',
+    icon: 'coins',
     description:
       'Calculadora de conversão de tokens com contas de pagamento, comprovantes e cotação atualizada diariamente por job agendado.',
     tags: ['Laravel', 'Vue 3', 'TypeScript', 'Docker'],
