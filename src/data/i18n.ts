@@ -131,7 +131,7 @@ export const content: Record<Lang, Content> = {
     contact: {
       label: 'contato',
       title: 'Bora conversar?',
-      lead: 'Aberto a projetos, oportunidades e boas conversas sobre Java, Laravel, Vue e IA.',
+      lead: 'Gosto de boas conversas sobre Java, Laravel, Vue e IA. Se quiser trocar uma ideia, é só mandar um e-mail.',
     },
     footer: {
       made: 'feito à mão com Astro · hospedado no meu VPS',
@@ -213,7 +213,7 @@ export const content: Record<Lang, Content> = {
     contact: {
       label: 'contact',
       title: 'Let’s talk?',
-      lead: 'Open to projects, opportunities and good conversations about Java, Laravel, Vue and AI.',
+      lead: 'I enjoy good conversations about Java, Laravel, Vue and AI. If you’d like to chat, just drop me an email.',
     },
     footer: {
       made: 'handmade with Astro · hosted on my own VPS',
@@ -295,7 +295,7 @@ export const content: Record<Lang, Content> = {
     contact: {
       label: 'contacto',
       title: '¿Hablamos?',
-      lead: 'Abierto a proyectos, oportunidades y buenas conversaciones sobre Java, Laravel, Vue e IA.',
+      lead: 'Me gustan las buenas conversaciones sobre Java, Laravel, Vue e IA. Si quieres charlar, escríbeme un correo.',
     },
     footer: {
       made: 'hecho a mano con Astro · alojado en mi propio VPS',
