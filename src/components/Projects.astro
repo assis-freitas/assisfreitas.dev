@@ -1,0 +1,160 @@
+---
+import { projects } from '../data/site';
+
+const open = projects.filter((p) => p.status === 'aberto');
+const priv = projects.filter((p) => p.status === 'privado');
+---
+
+<section id="projetos" class="section">
+  <div class="container">
+    <p class="section-label">// projetos</p>
+    <h2 class="section-title">No que estou trabalhando</h2>
+
+    <div class="cards">
+      {
+        [...open, ...priv].map((p) => (
+          <article class="card">
+            <header>
+              <span class="emoji" aria-hidden="true">{p.emoji}</span>
+              <h3>{p.name}</h3>
+              <span class:list={['badge', 'mono', p.status]}>{p.status}</span>
+            </header>
+            <p>{p.description}</p>
+            <ul class="tags">
+              {p.tags.map((t) => (
+                <li class="mono">{t}</li>
+              ))}
+            </ul>
+            {(p.repo || p.demo) && (
+              <div class="links">
+                {p.demo && <a href={p.demo} target="_blank" rel="noopener">Ver demo ↗</a>}
+                {p.repo && <a href={p.repo} target="_blank" rel="noopener">Código ↗</a>}
+              </div>
+            )}
+          </article>
+        ))
+      }
+    </div>
+
+    {
+      open.length === 0 && (
+        <div class="soon">
+          <p class="mono">$ git log --oneline vitrine/</p>
+          <p>
+            Projetos abertos, pequenos e com demo no ar estão a caminho. Enquanto isso, os
+            projetos acima são privados, mas posso mostrar mais numa conversa.
+          </p>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--panel);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: linear-gradient(90deg, var(--a1), var(--a2));
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--a1) 50%, var(--border));
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .emoji {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 20px;
+    margin: 0;
+    margin-right: auto;
+    letter-spacing: -0.01em;
+  }
+  .badge {
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .badge.aberto {
+    color: var(--a1);
+    border-color: var(--a1);
+  }
+  .card > p {
+    color: var(--muted);
+    font-size: 15.5px;
+    margin: 0 0 20px;
+    flex: 1;
+  }
+  .tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tags li {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--chip);
+    color: var(--muted);
+  }
+  .links {
+    display: flex;
+    gap: 16px;
+    margin-top: 18px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .links a {
+    text-decoration: none;
+    color: var(--a2);
+  }
+  .soon {
+    margin-top: 28px;
+    border: 1px dashed var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    color: var(--muted);
+  }
+  .soon p {
+    margin: 0;
+  }
+  .soon .mono {
+    color: var(--a1);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  @media (max-width: 960px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

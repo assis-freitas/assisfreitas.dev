@@ -1,0 +1,104 @@
+---
+import { about, stack } from '../data/site';
+---
+
+<section id="sobre" class="section">
+  <div class="container">
+    <p class="section-label">// sobre</p>
+    <h2 class="section-title">Do banco de dados ao deploy</h2>
+    <div class="about">
+      {about.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="section alt">
+  <div class="container">
+    <p class="section-label">// stack</p>
+    <h2 class="section-title">Ferramentas do dia a dia</h2>
+    <div class="groups">
+      {
+        stack.map((g) => (
+          <div class="group">
+            <h3 class="mono">{g.title}</h3>
+            <ul>
+              {g.items.map((it) => (
+                <li style={`--brand:#${it.icon.hex}`}>
+                  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                    <path d={it.icon.path} />
+                  </svg>
+                  {it.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    max-width: 68ch;
+    color: var(--muted);
+    font-size: 18px;
+  }
+  .about p {
+    margin: 0 0 18px;
+  }
+  .alt {
+    background: var(--bg-soft);
+    border-block: 1px solid var(--border);
+  }
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .group {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--panel);
+    padding: 22px;
+    box-shadow: var(--shadow);
+  }
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+  li svg {
+    padding: 7px;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: var(--chip);
+    fill: var(--muted);
+    transition: fill 0.2s ease;
+  }
+  li:hover svg {
+    fill: var(--brand);
+  }
+  @media (max-width: 860px) {
+    .groups {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

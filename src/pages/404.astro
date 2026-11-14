@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+---
+
+<Base title="404 · Assis de Freitas">
+  <Header />
+  <main class="container nf">
+    <p class="mono code">$ cd {Astro.url.pathname}</p>
+    <p class="mono err">zsh: no such file or directory</p>
+    <h1>Página não encontrada</h1>
+    <a class="btn btn-primary" href="/">Voltar para o início</a>
+  </main>
+</Base>
+
+<style>
+  .nf {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .code {
+    color: var(--a1);
+    margin: 0;
+  }
+  .err {
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+  h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    letter-spacing: -0.03em;
+    margin: 0 0 28px;
+  }
+</style>

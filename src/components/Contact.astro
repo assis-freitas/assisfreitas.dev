@@ -1,0 +1,103 @@
+---
+import { siGithub } from 'simple-icons';
+import { links, site } from '../data/site';
+---
+
+<section id="contato" class="section">
+  <div class="container">
+    <div class="box">
+      <p class="section-label">// contato</p>
+      <h2 class="section-title">Bora conversar?</h2>
+      <p class="lead">
+        Aberto a projetos, oportunidades e boas conversas sobre Laravel, Vue, Spring e IA.
+      </p>
+      <a class="btn btn-primary big" href={`mailto:${links.email}`}>{links.email}</a>
+      <ul class="social">
+        <li>
+          <a href={links.github} target="_blank" rel="noopener me">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d={siGithub.path} /></svg>
+            GitHub
+          </a>
+        </li>
+        {
+          links.linkedin && (
+            <li>
+              <a href={links.linkedin} target="_blank" rel="noopener me">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <rect width="24" height="24" rx="4" fill="currentColor" />
+                  <text x="12" y="17.5" text-anchor="middle" font-size="14" font-weight="700" font-family="Arial, sans-serif" fill="var(--bg)">in</text>
+                </svg>
+                LinkedIn
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot mono">
+    <span>© {new Date().getFullYear()} {site.name}</span>
+    <span>feito com Astro · hospedado no meu VPS</span>
+  </div>
+</footer>
+
+<style>
+  .box {
+    position: relative;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 64px 24px;
+    background:
+      radial-gradient(ellipse at top, var(--glow), transparent 60%),
+      var(--panel);
+    box-shadow: var(--shadow);
+  }
+  .section-title {
+    margin-bottom: 14px;
+  }
+  .lead {
+    color: var(--muted);
+    max-width: 50ch;
+    margin: 0 auto 32px;
+  }
+  .big {
+    font-size: 17px;
+    padding: 14px 26px;
+    overflow-wrap: anywhere;
+  }
+  .social {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
+  .social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .social a:hover {
+    color: var(--fg);
+  }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+</style>
