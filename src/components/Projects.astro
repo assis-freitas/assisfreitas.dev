@@ -1,15 +1,21 @@
 ---
 import { projects } from '../data/site';
+import { content, type Lang } from '../data/i18n';
 import Icon from './Icon.astro';
 
-const open = projects.filter((p) => p.status === 'aberto');
-const priv = projects.filter((p) => p.status === 'privado');
+interface Props {
+  lang: Lang;
+}
+const t = content[Astro.props.lang].projects;
+
+const open = projects.filter((p) => p.open);
+const priv = projects.filter((p) => !p.open);
 ---
 
-<section id="projetos" class="section">
+<section id="projects" class="section">
   <div class="container">
-    <p class="section-label" data-reveal>projetos</p>
-    <h2 class="section-title" data-reveal style="--i:1">No que estou trabalhando</h2>
+    <p class="section-label" data-reveal>{t.label}</p>
+    <h2 class="section-title" data-reveal style="--i:1">{t.title}</h2>
 
     <div class="cards">
       {
@@ -18,9 +24,9 @@ const priv = projects.filter((p) => p.status === 'privado');
             <header>
               <span class="icon"><Icon name={p.icon} /></span>
               <h3>{p.name}</h3>
-              <span class:list={['badge', 'mono', p.status]}>{p.status}</span>
+              <span class:list={['badge', 'mono', p.open && 'is-open']}>{p.open ? t.open : t.private}</span>
             </header>
-            <p>{p.description}</p>
+            <p>{t.items[p.id]}</p>
             <ul class="tags">
               {p.tags.map((t) => (
                 <li class="mono">{t}</li>
@@ -28,8 +34,8 @@ const priv = projects.filter((p) => p.status === 'privado');
             </ul>
             {(p.repo || p.demo) && (
               <div class="links">
-                {p.demo && <a href={p.demo} target="_blank" rel="noopener">Ver demo ↗</a>}
-                {p.repo && <a href={p.repo} target="_blank" rel="noopener">Código ↗</a>}
+                {p.demo && <a href={p.demo} target="_blank" rel="noopener">{t.demo} ↗</a>}
+                {p.repo && <a href={p.repo} target="_blank" rel="noopener">{t.code} ↗</a>}
               </div>
             )}
           </article>
@@ -41,10 +47,7 @@ const priv = projects.filter((p) => p.status === 'privado');
       open.length === 0 && (
         <div class="soon" data-reveal>
           <p class="mono">$ git log --oneline vitrine/</p>
-          <p>
-            Projetos abertos, pequenos e com demo no ar estão a caminho. Enquanto isso, os
-            projetos acima são privados, mas posso mostrar mais numa conversa.
-          </p>
+          <p>{t.soon}</p>
         </div>
       )
     }
@@ -123,7 +126,7 @@ const priv = projects.filter((p) => p.status === 'privado');
     border: 1px solid var(--border);
     color: var(--muted);
   }
-  .badge.aberto {
+  .badge.is-open {
     color: var(--accent);
     border-color: var(--accent);
   }

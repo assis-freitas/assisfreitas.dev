@@ -1,27 +1,34 @@
 ---
-import { about, site, stack, summary, timeline } from '../data/site';
+import { site, stack } from '../data/site';
+import { content, type Lang } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const t = content[Astro.props.lang];
+const a = t.about;
 import Icon from './Icon.astro';
 ---
 
-<section id="sobre" class="section">
+<section id="about" class="section">
   <div class="container">
-    <p class="section-label" data-reveal>sobre</p>
+    <p class="section-label" data-reveal>{a.label}</p>
     <div class="layout">
       <div>
-        <p class="summary" data-reveal style="--i:1">{summary}</p>
+        <p class="summary" data-reveal style="--i:1">{a.summary}</p>
         <div class="about">
-          {about.map((p, i) => <p data-reveal style={`--i:${i + 2}`}>{p}</p>)}
+          {a.paragraphs.map((p, i) => <p data-reveal style={`--i:${i + 2}`}>{p}</p>)}
         </div>
       </div>
       <div>
-        <h3 class="tl-title mono" data-reveal>trajetória</h3>
-        <ol class="timeline" aria-label="Trajetória profissional">
+        <h3 class="tl-title mono" data-reveal>{a.timelineTitle}</h3>
+        <ol class="timeline" aria-label={a.timelineLabel}>
           {
-            timeline.map((t, i) => (
+            a.timeline.map((it, i) => (
               <li data-reveal style={`--i:${i + 1}`}>
-                <span class="year mono">{t.period}</span>
-                <span class="role">{t.role}</span>
-                <span class="company">{t.company}</span>
+                <span class="year mono">{it.period}</span>
+                <span class="role">{it.role}</span>
+                <span class="company">{it.company}</span>
               </li>
             ))
           }
@@ -34,13 +41,13 @@ import Icon from './Icon.astro';
 
 <section id="stack" class="section alt">
   <div class="container">
-    <p class="section-label" data-reveal>stack</p>
-    <h2 class="section-title" data-reveal style="--i:1">Ferramentas do dia a dia</h2>
+    <p class="section-label" data-reveal>{t.stack.label}</p>
+    <h2 class="section-title" data-reveal style="--i:1">{t.stack.title}</h2>
     <div class="groups">
       {
         stack.map((g, gi) => (
           <div class="group" data-reveal style={`--i:${gi}`}>
-            <h3 class="mono">{g.title}</h3>
+            <h3 class="mono">{t.stack.groups[g.id]}</h3>
             <ul>
               {g.items.map((it) => (
                 <li style={`--brand:#${it.icon.hex}`}>

@@ -1,29 +1,36 @@
 ---
 import { site } from '../data/site';
+import { content, type Lang } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const t = content[Astro.props.lang].hero;
 
 const lines = [
   { cmd: 'whoami', out: site.name },
-  { cmd: 'cat papel.txt', out: `${site.role} · mercado financeiro` },
+  { cmd: 'cat role.txt', out: t.terminal.role },
   { cmd: 'ls ./stack', out: 'java  spring-boot  php  laravel  vue  angular' },
-  { cmd: 'echo $FOCO', out: 'produtos com IA (Spring AI, LLMs)' },
+  { cmd: 'echo $FOCUS', out: t.terminal.focus },
 ];
+const [before, em, after] = t.headline.split('*');
 ---
 
 <section class="hero">
   <div class="container grid">
     <div class="copy">
-      <p class="hello mono" data-reveal>Olá, eu sou o Assis —</p>
+      <p class="hello mono" data-reveal>{t.hello}</p>
       <h1 data-reveal style="--i:1">
-        Engenheiro de software que <em>gosta</em> de levar a ideia até o deploy<span class="accent">.</span>
+        {before}<em>{em}</em>{after}<span class="accent">.</span>
       </h1>
-      <p class="tagline" data-reveal style="--i:2">{site.tagline}</p>
+      <p class="tagline" data-reveal style="--i:2">{t.tagline}</p>
       <div class="actions" data-reveal style="--i:3">
-        <a class="btn btn-primary" href="#projetos">Ver projetos</a>
-        <a class="btn" href="#contato">Falar comigo</a>
+        <a class="btn btn-primary" href="#projects">{t.ctaProjects}</a>
+        <a class="btn" href="#contact">{t.ctaContact}</a>
       </div>
     </div>
 
-    <div class="terminal" role="img" aria-label="Terminal com informações sobre Assis" data-reveal style="--i:2">
+    <div class="terminal" role="img" aria-label={content[Astro.props.lang].ui.terminalLabel} data-reveal style="--i:2">
       <div class="bar" aria-hidden="true">
         <span></span><span></span><span></span>
         <p class="mono">~/assis-freitas</p>

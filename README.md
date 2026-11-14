@@ -10,8 +10,13 @@ pnpm dev        # http://localhost:4321
 pnpm build      # gera dist/
 ```
 
-O conteúdo (textos, stack, projetos e links) fica em [`src/data/site.ts`](src/data/site.ts).
-Para adicionar um projeto aberto, coloque `status: 'aberto'` e os campos `repo` e/ou `demo`.
+O site tem três idiomas: português (`/`), inglês (`/en/`) e espanhol (`/es/`).
+
+- **Textos** de cada idioma: [`src/data/i18n.ts`](src/data/i18n.ts).
+- **Links, stack e projetos** (o que não muda entre idiomas): [`src/data/site.ts`](src/data/site.ts).
+
+Para adicionar um projeto aberto, inclua-o em `projects` com `open: true` e `repo`/`demo`,
+e escreva a descrição dele em `projects.items` nos três idiomas.
 
 ## Deploy no Easypanel
 

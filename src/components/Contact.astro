@@ -1,16 +1,20 @@
 ---
 import { siGithub } from 'simple-icons';
 import { links, site } from '../data/site';
+import { content, type Lang } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const t = content[Astro.props.lang];
 ---
 
-<section id="contato" class="section">
+<section id="contact" class="section">
   <div class="container">
     <div class="box">
-      <p class="section-label center" data-reveal>contato</p>
-      <h2 class="section-title" data-reveal style="--i:1">Bora conversar?</h2>
-      <p class="lead" data-reveal style="--i:2">
-        Aberto a projetos, oportunidades e boas conversas sobre Laravel, Vue, Spring e IA.
-      </p>
+      <p class="section-label center" data-reveal>{t.contact.label}</p>
+      <h2 class="section-title" data-reveal style="--i:1">{t.contact.title}</h2>
+      <p class="lead" data-reveal style="--i:2">{t.contact.lead}</p>
       <a data-reveal style="--i:3" class="btn btn-primary big" href={`mailto:${links.email}`}>{links.email}</a>
       <ul class="social" data-reveal style="--i:4">
         <li>
@@ -40,10 +44,8 @@ import { links, site } from '../data/site';
 <footer>
   <div class="container foot mono">
     <span>© {new Date().getFullYear()} {site.name}</span>
-    <span>feito à mão com Astro · hospedado no meu VPS</span>
-    <p class="disclaimer">
-      Este é um site pessoal. Projetos e opiniões aqui são meus e não representam meus empregadores.
-    </p>
+    <span>{t.footer.made}</span>
+    <p class="disclaimer">{t.footer.disclaimer}</p>
   </div>
 </footer>
 

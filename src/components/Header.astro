@@ -1,24 +1,60 @@
 ---
 import Logo from './Logo.astro';
+import { content, langMeta, langs, type Lang } from '../data/i18n';
+
+interface Props {
+  lang?: Lang;
+  /** false na página 404: só mostra logo, tema e idioma. */
+  showNav?: boolean;
+}
+const { lang = 'pt', showNav = true } = Astro.props;
+const t = content[lang];
+const home = langMeta[lang].path;
 
 const nav = [
-  { href: '#sobre', label: 'sobre' },
-  { href: '#stack', label: 'stack' },
-  { href: '#projetos', label: 'projetos' },
-  { href: '#contato', label: 'contato' },
+  { href: '#about', label: t.nav.about },
+  { href: '#stack', label: t.nav.stack },
+  { href: '#projects', label: t.nav.projects },
+  { href: '#contact', label: t.nav.contact },
 ];
 ---
 
 <header class="header">
   <div class="container inner">
-    <a href="/" class="logo" aria-label="Assis Freitas, início">
+    <a href={home} class="logo" aria-label={t.ui.home}>
       <Logo size={30} />
       <span class="word">assis<span class="accent">.</span>freitas</span>
     </a>
-    <nav aria-label="Seções">
-      {nav.map((n) => <a href={n.href} class="mono">{n.label}</a>)}
-    </nav>
-    <button class="theme" type="button" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+    {
+      showNav && (
+        <nav aria-label={t.ui.sections}>
+          {nav.map((n) => (
+            <a href={n.href} class="mono">
+              {n.label}
+            </a>
+          ))}
+        </nav>
+      )
+    }
+    <ul class="langs mono" aria-label={t.ui.language}>
+      {
+        langs.map((l) => (
+          <li>
+            <a
+              href={langMeta[l].path}
+              hreflang={langMeta[l].htmlLang}
+              lang={langMeta[l].htmlLang}
+              title={langMeta[l].name}
+              aria-current={l === lang ? 'true' : undefined}
+              data-lang={l}
+            >
+              {langMeta[l].label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <button class="theme" type="button" aria-label={t.ui.toggleTheme} title={t.ui.toggleTheme}>
       <svg class="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
       <svg class="moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21 14.5A8.5 8.5 0 0 1 9.5 3a8.5 8.5 0 1 0 11.5 11.5Z"/></svg>
     </button>
@@ -37,6 +73,14 @@ const nav = [
       localStorage.setItem('theme', next);
     } catch {}
   });
+
+  document.querySelectorAll<HTMLAnchorElement>('.langs a').forEach((a) =>
+    a.addEventListener('click', () => {
+      try {
+        localStorage.setItem('lang', a.dataset.lang ?? '');
+      } catch {}
+    }),
+  );
 </script>
 
 <style>
@@ -72,12 +116,35 @@ const nav = [
     gap: 22px;
   }
   nav a {
+    white-space: nowrap;
     font-size: 14px;
     color: var(--muted);
     text-decoration: none;
   }
   nav a:hover {
     color: var(--fg);
+  }
+  .langs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2px;
+    font-size: 12px;
+  }
+  .langs a {
+    display: block;
+    padding: 4px 7px;
+    border-radius: 6px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .langs a:hover {
+    color: var(--fg);
+  }
+  .langs a[aria-current] {
+    color: var(--on-accent);
+    background: var(--accent);
   }
   .theme {
     display: grid;
@@ -107,7 +174,7 @@ const nav = [
       display: block;
     }
   }
-  @media (max-width: 640px) {
+  @media (max-width: 820px) {
     nav {
       display: none;
     }

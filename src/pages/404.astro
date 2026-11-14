@@ -3,13 +3,18 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 ---
 
-<Base title="404 · Assis de Freitas">
-  <Header />
+<Base title="404 · Assis de Freitas" alternates={false}>
+  <Header showNav={false} />
   <main class="container nf">
     <p class="mono code">$ cd {Astro.url.pathname}</p>
     <p class="mono err">zsh: no such file or directory</p>
     <h1>Página não encontrada</h1>
-    <a class="btn btn-primary" href="/">Voltar para o início</a>
+    <p class="alt">Page not found · Página no encontrada</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Voltar para o início</a>
+      <a class="btn" href="/en/" lang="en">Home (EN)</a>
+      <a class="btn" href="/es/" lang="es">Inicio (ES)</a>
+    </div>
   </main>
 </Base>
 
@@ -28,6 +33,15 @@ import Header from '../components/Header.astro';
   .err {
     color: var(--muted);
     margin: 0 0 16px;
+  }
+  .alt {
+    color: var(--muted);
+    margin: -18px 0 28px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
   h1 {
     font-size: clamp(32px, 5vw, 48px);
