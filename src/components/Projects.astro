@@ -7,13 +7,13 @@ const priv = projects.filter((p) => p.status === 'privado');
 
 <section id="projetos" class="section">
   <div class="container">
-    <p class="section-label">// projetos</p>
-    <h2 class="section-title">No que estou trabalhando</h2>
+    <p class="section-label" data-reveal>projetos</p>
+    <h2 class="section-title" data-reveal style="--i:1">No que estou trabalhando</h2>
 
     <div class="cards">
       {
-        [...open, ...priv].map((p) => (
-          <article class="card">
+        [...open, ...priv].map((p, i) => (
+          <article class="card" data-reveal style={`--i:${i}`}>
             <header>
               <span class="emoji" aria-hidden="true">{p.emoji}</span>
               <h3>{p.name}</h3>
@@ -38,7 +38,7 @@ const priv = projects.filter((p) => p.status === 'privado');
 
     {
       open.length === 0 && (
-        <div class="soon">
+        <div class="soon" data-reveal>
           <p class="mono">$ git log --oneline vitrine/</p>
           <p>
             Projetos abertos, pequenos e com demo no ar estão a caminho. Enquanto isso, os
@@ -66,18 +66,24 @@ const priv = projects.filter((p) => p.status === 'privado');
     padding: 24px;
     box-shadow: var(--shadow);
     overflow: hidden;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
   }
   .card::before {
     content: '';
     position: absolute;
     inset: 0 0 auto;
     height: 3px;
-    background: linear-gradient(90deg, var(--a1), var(--a2));
+    background: var(--accent);
+    transform: scaleX(0.18);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .card:hover::before {
+    transform: scaleX(1);
   }
   .card:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--a1) 50%, var(--border));
+    border-color: var(--fg);
+    box-shadow: 6px 6px 0 var(--fg);
   }
   header {
     display: flex;
@@ -89,7 +95,9 @@ const priv = projects.filter((p) => p.status === 'privado');
     font-size: 24px;
   }
   h3 {
-    font-size: 20px;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 23px;
     margin: 0;
     margin-right: auto;
     letter-spacing: -0.01em;
@@ -102,8 +110,8 @@ const priv = projects.filter((p) => p.status === 'privado');
     color: var(--muted);
   }
   .badge.aberto {
-    color: var(--a1);
-    border-color: var(--a1);
+    color: var(--accent);
+    border-color: var(--accent);
   }
   .card > p {
     color: var(--muted);
@@ -135,7 +143,7 @@ const priv = projects.filter((p) => p.status === 'privado');
   }
   .links a {
     text-decoration: none;
-    color: var(--a2);
+    color: var(--accent);
   }
   .soon {
     margin-top: 28px;
@@ -148,7 +156,7 @@ const priv = projects.filter((p) => p.status === 'privado');
     margin: 0;
   }
   .soon .mono {
-    color: var(--a1);
+    color: var(--accent);
     font-size: 14px;
     margin-bottom: 6px;
   }

@@ -1,25 +1,39 @@
 ---
-import { about, stack } from '../data/site';
+import { about, stack, summary, timeline } from '../data/site';
 ---
 
 <section id="sobre" class="section">
   <div class="container">
-    <p class="section-label">// sobre</p>
-    <h2 class="section-title">Do banco de dados ao deploy</h2>
-    <div class="about">
-      {about.map((p) => <p>{p}</p>)}
+    <p class="section-label" data-reveal>sobre</p>
+    <div class="layout">
+      <div>
+        <p class="summary" data-reveal style="--i:1">{summary}</p>
+        <div class="about">
+          {about.map((p, i) => <p data-reveal style={`--i:${i + 2}`}>{p}</p>)}
+        </div>
+      </div>
+      <ol class="timeline" aria-label="Linha do tempo">
+        {
+          timeline.map((t, i) => (
+            <li data-reveal style={`--i:${i + 1}`}>
+              <span class="year mono">{t.year}</span>
+              <span>{t.text}</span>
+            </li>
+          ))
+        }
+      </ol>
     </div>
   </div>
 </section>
 
 <section id="stack" class="section alt">
   <div class="container">
-    <p class="section-label">// stack</p>
-    <h2 class="section-title">Ferramentas do dia a dia</h2>
+    <p class="section-label" data-reveal>stack</p>
+    <h2 class="section-title" data-reveal style="--i:1">Ferramentas do dia a dia</h2>
     <div class="groups">
       {
-        stack.map((g) => (
-          <div class="group">
+        stack.map((g, gi) => (
+          <div class="group" data-reveal style={`--i:${gi}`}>
             <h3 class="mono">{g.title}</h3>
             <ul>
               {g.items.map((it) => (
@@ -39,14 +53,63 @@ import { about, stack } from '../data/site';
 </section>
 
 <style>
+  .layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 72px;
+    align-items: start;
+  }
+  .summary {
+    font-family: var(--display);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 0 0 32px;
+  }
   .about {
-    max-width: 68ch;
+    max-width: 62ch;
     color: var(--muted);
-    font-size: 18px;
   }
   .about p {
-    margin: 0 0 18px;
+    margin: 0 0 16px;
   }
+  .timeline {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0 0 0 22px;
+    border-left: 1px solid var(--border);
+  }
+  .timeline li {
+    position: relative;
+    display: grid;
+    gap: 2px;
+    padding-bottom: 26px;
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+  .timeline li:last-child {
+    padding-bottom: 0;
+  }
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 7px;
+    width: 9px;
+    height: 9px;
+    background: var(--bg);
+    border: 1px solid var(--fg);
+  }
+  .timeline li:last-child::before {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .year {
+    color: var(--fg);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
   .alt {
     background: var(--bg-soft);
     border-block: 1px solid var(--border);
@@ -61,42 +124,45 @@ import { about, stack } from '../data/site';
     border-radius: 14px;
     background: var(--panel);
     padding: 22px;
-    box-shadow: var(--shadow);
   }
   h3 {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--muted);
     margin: 0 0 16px;
   }
-  ul {
+  .group ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
     gap: 10px;
   }
-  li {
+  .group li {
     display: flex;
     align-items: center;
     gap: 12px;
     font-weight: 500;
   }
-  li svg {
+  .group li svg {
     padding: 7px;
     width: 36px;
     height: 36px;
     border-radius: 9px;
     background: var(--chip);
-    fill: var(--muted);
+    fill: var(--fg);
     transition: fill 0.2s ease;
   }
-  li:hover svg {
+  .group li:hover svg {
     fill: var(--brand);
   }
   @media (max-width: 860px) {
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
     .groups {
       grid-template-columns: 1fr;
     }

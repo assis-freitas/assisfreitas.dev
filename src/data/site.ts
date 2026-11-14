@@ -28,13 +28,24 @@ export const site = {
 export const links = {
   github: 'https://github.com/assis-freitas',
   email: 'freitas.assis@gmail.com',
-  // TODO: coloque a URL do seu LinkedIn. Enquanto estiver vazia, o link não aparece.
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/francisco-freitas/',
 };
 
+// Resumo curto que aparece em destaque na seção "sobre".
+export const summary =
+  'Programo há mais de dez anos e gosto de pegar uma ideia e transformá-la em produto rodando: modelo os dados, escrevo a API, construo a interface e cuido do deploy.';
+
 export const about = [
-  'Sou dev full-stack. No back-end trabalho com PHP/Laravel e Java/Spring Boot; no front, com Vue 3 e TypeScript. Gosto de cuidar do produto inteiro: modelagem de dados, API, interface, testes e deploy.',
-  'Nos últimos tempos tenho construído produtos que colocam LLMs para trabalhar em problemas reais, como um assistente pessoal que cuida de agenda e e-mail e uma plataforma de aprendizado.',
+  'No back-end trabalho com PHP/Laravel e Java/Spring Boot; no front, com Vue 3 e TypeScript. Prefiro soluções simples, bem testadas e fáceis de manter a arquiteturas que só impressionam no diagrama.',
+  'Hoje meu foco é construir produtos que colocam LLMs para resolver problemas do dia a dia, como um assistente pessoal que cuida de agenda e e-mail e uma plataforma de aprendizado multi-tenant.',
+];
+
+// Linha do tempo montada a partir do histórico do GitHub. Ajuste com cargos/empresas reais.
+export const timeline = [
+  { year: '2015', text: 'Primeiros projetos públicos: apps web em PHP e um serviço em Java.' },
+  { year: '2021', text: 'Controle financeiro com Vue, Spring Boot e app mobile em Ionic.' },
+  { year: '2023', text: 'APIs em Laravel e front em Angular com formulários reativos.' },
+  { year: '2026', text: 'Produtos com IA: Spring AI, Laravel 13 e assistentes com LLM.' },
 ];
 
 export type StackItem = { name: string; icon: SimpleIcon };

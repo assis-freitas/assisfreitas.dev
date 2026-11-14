@@ -10,30 +10,28 @@ const lines = [
 ---
 
 <section class="hero">
-  <div class="glow" aria-hidden="true"></div>
   <div class="container grid">
     <div class="copy">
-      <p class="hello mono">Olá, eu sou</p>
-      <h1>{site.name}</h1>
-      <p class="role">
-        <span class="gradient-text">{site.role}</span> · Laravel · Vue · Spring Boot · IA
-      </p>
-      <p class="tagline">{site.tagline}</p>
-      <div class="actions">
+      <p class="hello mono" data-reveal>Olá, eu sou o Assis —</p>
+      <h1 data-reveal style="--i:1">
+        Dev full-stack que <em>gosta</em> de levar a ideia até o deploy<span class="accent">.</span>
+      </h1>
+      <p class="tagline" data-reveal style="--i:2">{site.tagline}</p>
+      <div class="actions" data-reveal style="--i:3">
         <a class="btn btn-primary" href="#projetos">Ver projetos</a>
         <a class="btn" href="#contato">Falar comigo</a>
       </div>
     </div>
 
-    <div class="terminal" role="img" aria-label="Terminal com informações sobre Assis">
+    <div class="terminal" role="img" aria-label="Terminal com informações sobre Assis" data-reveal style="--i:2">
       <div class="bar" aria-hidden="true">
         <span></span><span></span><span></span>
-        <p class="mono">zsh · ~/assis-freitas</p>
+        <p class="mono">~/assis-freitas</p>
       </div>
       <div class="body mono" aria-hidden="true">
         {
           lines.map((l, i) => (
-            <div class="line" style={`--d:${i * 0.7}s`}>
+            <div class="line" style={`--d:${0.6 + i * 0.6}s`}>
               <p>
                 <span class="prompt">$</span> {l.cmd}
               </p>
@@ -41,7 +39,7 @@ const lines = [
             </div>
           ))
         }
-        <p class="line" style={`--d:${lines.length * 0.7}s`}>
+        <p class="line" style={`--d:${0.6 + lines.length * 0.6}s`}>
           <span class="prompt">$</span> <span class="cursor"></span>
         </p>
       </div>
@@ -51,57 +49,36 @@ const lines = [
 
 <style>
   .hero {
-    position: relative;
-    padding: 112px 0 96px;
-    overflow: hidden;
-  }
-  .glow {
-    position: absolute;
-    inset: -20% -10% auto auto;
-    width: 640px;
-    height: 640px;
-    background: radial-gradient(circle, var(--glow), transparent 65%);
-    pointer-events: none;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(var(--border) 1px, transparent 1px);
-    background-size: 26px 26px;
-    mask-image: linear-gradient(to bottom, #000 30%, transparent);
-    opacity: 0.6;
-    pointer-events: none;
+    padding: 120px 0 104px;
+    border-bottom: 1px solid var(--border);
   }
   .grid {
-    position: relative;
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 56px;
-    align-items: center;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 64px;
+    align-items: end;
   }
   .hello {
-    color: var(--a1);
-    margin: 0 0 6px;
-    font-size: 15px;
+    color: var(--accent);
+    margin: 0 0 18px;
+    font-size: 14px;
   }
   h1 {
-    font-size: clamp(42px, 6.5vw, 68px);
+    font-size: clamp(40px, 6vw, 72px);
     line-height: 1.02;
-    letter-spacing: -0.035em;
-    margin: 0 0 14px;
-    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 26px;
   }
-  .role {
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--muted);
-    margin: 0 0 20px;
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
   }
   .tagline {
     color: var(--muted);
-    max-width: 52ch;
-    margin: 0 0 32px;
+    max-width: 50ch;
+    margin: 0 0 34px;
+    font-size: 18px;
   }
   .actions {
     display: flex;
@@ -110,10 +87,10 @@ const lines = [
   }
 
   .terminal {
-    border: 1px solid var(--border);
-    border-radius: 14px;
+    border: 1px solid var(--fg);
+    border-radius: 10px;
     background: var(--panel);
-    box-shadow: var(--shadow);
+    box-shadow: 6px 6px 0 var(--fg);
     overflow: hidden;
     min-width: 0;
   }
@@ -121,26 +98,30 @@ const lines = [
     display: flex;
     align-items: center;
     gap: 7px;
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--border);
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--fg);
     background: var(--bg-soft);
   }
   .bar span {
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: var(--border);
+    border: 1px solid var(--fg);
+  }
+  .bar span:first-child {
+    background: var(--accent);
+    border-color: var(--accent);
   }
   .bar p {
-    margin: 0 auto;
-    padding-right: 40px;
+    margin: 0 0 0 auto;
     font-size: 12px;
     color: var(--muted);
   }
   .body {
-    padding: 20px 22px 24px;
+    padding: 20px 22px 22px;
     font-size: 14px;
     line-height: 1.7;
+    min-height: 268px;
   }
   .body p {
     margin: 0;
@@ -153,7 +134,7 @@ const lines = [
     margin-bottom: 8px;
   }
   .prompt {
-    color: var(--a1);
+    color: var(--accent);
   }
   .out {
     color: var(--muted);
@@ -163,7 +144,7 @@ const lines = [
     width: 9px;
     height: 17px;
     vertical-align: -3px;
-    background: var(--a1);
+    background: var(--accent);
     animation: blink 1.1s steps(1) infinite;
   }
   @keyframes show {
@@ -192,7 +173,10 @@ const lines = [
     }
     .grid {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 44px;
+    }
+    .terminal {
+      margin-right: 6px;
     }
   }
 </style>

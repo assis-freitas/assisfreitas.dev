@@ -1,16 +1,21 @@
+/*
+  Paleta "papel e tinta": fundo quente, texto quase preto e um único acento laranja-queimado.
+  Para trocar a marca, mude só --accent (e --accent-strong no modo escuro).
+*/
 :root {
-  --bg: #ffffff;
-  --bg-soft: #f6f8fa;
-  --panel: #ffffff;
-  --border: #d9dee4;
-  --fg: #14181d;
-  --muted: #5b6470;
-  --chip: #eef1f4;
-  --a1: #2f9e6e;
-  --a2: #2f6fe0;
-  --glow: rgba(47, 111, 224, 0.12);
-  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.06);
+  --bg: #f3efe6;
+  --bg-soft: #ebe5d8;
+  --panel: #faf7f0;
+  --border: #d8d0bf;
+  --fg: #1c1a17;
+  --muted: #655e53;
+  --chip: #e6dfd0;
+  --accent: #c2410c;
+  --accent-soft: #f6dccb;
+  --on-accent: #fffaf3;
+  --shadow: 0 1px 0 rgba(28, 26, 23, 0.06);
 
+  --display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
   --sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
   --max: 1080px;
@@ -19,32 +24,32 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --bg: #0b0f14;
-    --bg-soft: #10151c;
-    --panel: #121820;
-    --border: #252d38;
-    --fg: #e6edf3;
-    --muted: #8d97a5;
-    --chip: #1a212b;
-    --a1: #42b883;
-    --a2: #3b82f6;
-    --glow: rgba(59, 130, 246, 0.16);
+    --bg: #141311;
+    --bg-soft: #1a1916;
+    --panel: #1e1c19;
+    --border: #34302a;
+    --fg: #ede7da;
+    --muted: #a59d8e;
+    --chip: #2a2723;
+    --accent: #f0743a;
+    --accent-soft: #3a2418;
+    --on-accent: #141311;
     --shadow: none;
     color-scheme: dark;
   }
 }
 
 :root[data-theme='dark'] {
-  --bg: #0b0f14;
-  --bg-soft: #10151c;
-  --panel: #121820;
-  --border: #252d38;
-  --fg: #e6edf3;
-  --muted: #8d97a5;
-  --chip: #1a212b;
-  --a1: #42b883;
-  --a2: #3b82f6;
-  --glow: rgba(59, 130, 246, 0.16);
+  --bg: #141311;
+  --bg-soft: #1a1916;
+  --panel: #1e1c19;
+  --border: #34302a;
+  --fg: #ede7da;
+  --muted: #a59d8e;
+  --chip: #2a2723;
+  --accent: #f0743a;
+  --accent-soft: #3a2418;
+  --on-accent: #141311;
   --shadow: none;
   color-scheme: dark;
 }
@@ -81,8 +86,15 @@ svg {
 }
 
 ::selection {
-  background: var(--a1);
-  color: #fff;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+h1,
+h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-variation-settings: 'SOFT' 50, 'WONK' 0;
 }
 
 .container {
@@ -92,11 +104,8 @@ svg {
   padding: 0 20px;
 }
 
-.gradient-text {
-  background: linear-gradient(90deg, var(--a1), var(--a2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.accent {
+  color: var(--accent);
 }
 
 .mono {
@@ -104,21 +113,32 @@ svg {
 }
 
 .section {
-  padding: 96px 0;
+  padding: 104px 0;
 }
 
 .section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--mono);
-  font-size: 14px;
-  color: var(--a1);
-  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 0 0 48px;
+  height: 1px;
+  background: var(--accent);
 }
 
 .section-title {
-  font-size: clamp(28px, 4vw, 38px);
-  line-height: 1.15;
+  font-size: clamp(32px, 4.6vw, 46px);
+  line-height: 1.08;
   letter-spacing: -0.02em;
-  margin: 0 0 40px;
+  margin: 0 0 44px;
 }
 
 .btn {
@@ -126,30 +146,51 @@ svg {
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  border-radius: 10px;
+  border-radius: 999px;
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  border: 1px solid var(--fg);
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  border-color: var(--a1);
+  background: var(--fg);
+  color: var(--bg);
 }
 
 .btn-primary {
-  border: none;
-  color: #fff;
-  background: linear-gradient(90deg, var(--a1), var(--a2));
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-primary:hover {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
 }
 
 :focus-visible {
-  outline: 2px solid var(--a2);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 6px;
+}
+
+/* Reveal na rolagem: só esconde quando o JS está ativo (classe .js no <html>). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.js [data-reveal].in {
+  opacity: 1;
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -161,5 +202,9 @@ svg {
   }
   html {
     scroll-behavior: auto;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
   }
 }

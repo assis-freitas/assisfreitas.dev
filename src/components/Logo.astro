@@ -1,0 +1,29 @@
+---
+/*
+  Monograma AF: a diagonal + a haste formam o "A"; a haste com os braços forma o "F".
+  A barra do meio é ao mesmo tempo a travessa do A e o braço do F.
+  O quadradinho no canto é o cursor do terminal, na cor de acento.
+*/
+interface Props {
+  size?: number;
+  title?: string;
+}
+const { size = 32, title } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 64 64"
+  width={size}
+  height={size}
+  role={title ? 'img' : undefined}
+  aria-label={title}
+  aria-hidden={title ? undefined : 'true'}
+  class="logo-mark"
+>
+  <g fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M10 54 L31 10 V54" />
+    <path d="M31 10 H54" />
+    <path d="M18 36 H48" />
+  </g>
+  <rect x="46" y="47" width="8" height="8" fill="var(--accent, #c2410c)" />
+</svg>
