@@ -29,6 +29,8 @@ type Content = {
     timelineTitle: string;
     timelineLabel: string;
     timeline: { period: string; role: string; company: string }[];
+    educationTitle: string;
+    education: { period: string; course: string; school: string }[];
   };
   stack: { label: string; title: string; groups: Record<StackGroupId, string> };
   projects: {
@@ -89,6 +91,11 @@ export const content: Record<Lang, Content> = {
       ],
       timelineTitle: 'trajetória',
       timelineLabel: 'Trajetória profissional',
+      educationTitle: 'formação',
+      education: [
+        { period: '2019 — 2020', course: 'Pós-graduação em Desenvolvimento de Tecnologias Digitais', school: 'Estácio' },
+        { period: '2014 — 2017', course: 'Tecnólogo em Análise e Desenvolvimento de Sistemas', school: 'Fatec Itu' },
+      ],
       timeline: [
         { period: '2026 — hoje', role: 'Engenheiro de software sênior', company: companies.b3 },
         { period: '2025 — 2026', role: 'Desenvolvedor sênior', company: companies.midway },
@@ -166,6 +173,11 @@ export const content: Record<Lang, Content> = {
       ],
       timelineTitle: 'experience',
       timelineLabel: 'Work experience',
+      educationTitle: 'education',
+      education: [
+        { period: '2019 — 2020', course: 'Postgraduate specialization in Digital Technology Development', school: 'Estácio' },
+        { period: '2014 — 2017', course: 'Technologist degree in Systems Analysis and Development', school: 'Fatec Itu' },
+      ],
       timeline: [
         { period: '2026 — present', role: 'Senior Software Engineer', company: companies.b3 },
         { period: '2025 — 2026', role: 'Senior Software Developer', company: companies.midway },
@@ -243,6 +255,11 @@ export const content: Record<Lang, Content> = {
       ],
       timelineTitle: 'trayectoria',
       timelineLabel: 'Trayectoria profesional',
+      educationTitle: 'formación',
+      education: [
+        { period: '2019 — 2020', course: 'Posgrado en Desarrollo de Tecnologías Digitales', school: 'Estácio' },
+        { period: '2014 — 2017', course: 'Tecnólogo en Análisis y Desarrollo de Sistemas', school: 'Fatec Itu' },
+      ],
       timeline: [
         { period: '2026 — actualidad', role: 'Ingeniero de software sénior', company: companies.b3 },
         { period: '2025 — 2026', role: 'Desarrollador sénior', company: companies.midway },

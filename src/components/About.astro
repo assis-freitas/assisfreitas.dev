@@ -33,6 +33,18 @@ import Icon from './Icon.astro';
             ))
           }
         </ol>
+        <h3 class="tl-title mono edu-title" data-reveal>{a.educationTitle}</h3>
+        <ol class="timeline" aria-label={a.educationTitle}>
+          {
+            a.education.map((it, i) => (
+              <li data-reveal style={`--i:${i + 1}`}>
+                <span class="year mono">{it.period}</span>
+                <span class="role">{it.course}</span>
+                <span class="company">{it.school}</span>
+              </li>
+            ))
+          }
+        </ol>
         <p class="loc mono" data-reveal><Icon name="pin" size={15} /> {site.location}</p>
       </div>
     </div>
@@ -134,6 +146,9 @@ import Icon from './Icon.astro';
     letter-spacing: 0.1em;
     color: var(--muted);
     margin: 4px 0 18px;
+  }
+  .edu-title {
+    margin-top: 40px;
   }
   .loc {
     display: flex;
