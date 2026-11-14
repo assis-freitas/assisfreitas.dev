@@ -41,6 +41,9 @@ import { links, site } from '../data/site';
   <div class="container foot mono">
     <span>© {new Date().getFullYear()} {site.name}</span>
     <span>feito à mão com Astro · hospedado no meu VPS</span>
+    <p class="disclaimer">
+      Este é um site pessoal. Projetos e opiniões aqui são meus e não representam meus empregadores.
+    </p>
   </div>
 </footer>
 
@@ -99,6 +102,13 @@ import { links, site } from '../data/site';
   footer {
     border-top: 1px solid var(--border);
     padding: 28px 0;
+  }
+  .disclaimer {
+    flex-basis: 100%;
+    margin: 10px 0 0;
+    font-family: var(--sans);
+    font-size: 12.5px;
+    opacity: 0.85;
   }
   .foot {
     display: flex;

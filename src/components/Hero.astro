@@ -3,8 +3,8 @@ import { site } from '../data/site';
 
 const lines = [
   { cmd: 'whoami', out: site.name },
-  { cmd: 'cat papel.txt', out: site.role },
-  { cmd: 'ls ./stack', out: 'laravel  vue  spring-boot  postgres  docker' },
+  { cmd: 'cat papel.txt', out: `${site.role} · mercado financeiro` },
+  { cmd: 'ls ./stack', out: 'java  spring-boot  php  laravel  vue  angular' },
   { cmd: 'echo $FOCO', out: 'produtos com IA (Spring AI, LLMs)' },
 ];
 ---
@@ -14,7 +14,7 @@ const lines = [
     <div class="copy">
       <p class="hello mono" data-reveal>Olá, eu sou o Assis —</p>
       <h1 data-reveal style="--i:1">
-        Dev full-stack que <em>gosta</em> de levar a ideia até o deploy<span class="accent">.</span>
+        Engenheiro de software que <em>gosta</em> de levar a ideia até o deploy<span class="accent">.</span>
       </h1>
       <p class="tagline" data-reveal style="--i:2">{site.tagline}</p>
       <div class="actions" data-reveal style="--i:3">

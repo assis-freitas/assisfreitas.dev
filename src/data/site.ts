@@ -1,5 +1,6 @@
 import type { IconName } from './icons';
 import {
+  siAngular,
   siDocker,
   siGithubactions,
   siInertia,
@@ -7,6 +8,7 @@ import {
   siOpenjdk,
   siPhp,
   siPostgresql,
+  siReact,
   siRedis,
   siSpringboot,
   siTailwindcss,
@@ -19,10 +21,11 @@ export const site = {
   url: 'https://assisfreitas.dev',
   name: 'Assis de Freitas',
   handle: 'assis-freitas',
-  role: 'Dev full-stack',
-  tagline: 'Construo aplicações web de ponta a ponta com Laravel, Vue e Spring Boot, e hoje foco em produtos que usam IA de verdade.',
+  role: 'Engenheiro de software sênior',
+  location: 'Porto Feliz, SP',
+  tagline: 'Engenheiro de software sênior no mercado financeiro, com mais de 10 anos em Java/Spring Boot, PHP e JavaScript. Nos projetos pessoais, construo produtos com IA.',
   description:
-    'Portfólio de Assis de Freitas, dev full-stack: Laravel, Vue, Spring Boot e produtos com IA.',
+    'Portfólio de Assis de Freitas, engenheiro de software sênior: Java/Spring Boot, PHP/Laravel, Vue e produtos com IA.',
   locale: 'pt_BR',
 };
 
@@ -34,19 +37,23 @@ export const links = {
 
 // Resumo curto que aparece em destaque na seção "sobre".
 export const summary =
-  'Programo há mais de dez anos e gosto de pegar uma ideia e transformá-la em produto rodando: modelo os dados, escrevo a API, construo a interface e cuido do deploy.';
+  'Mais de 10 anos construindo software, de sistemas de missão crítica no mercado financeiro a produtos próprios com IA.';
 
 export const about = [
-  'No back-end trabalho com PHP/Laravel e Java/Spring Boot; no front, com Vue 3 e TypeScript. Prefiro soluções simples, bem testadas e fáceis de manter a arquiteturas que só impressionam no diagrama.',
-  'Hoje meu foco é construir produtos que colocam LLMs para resolver problemas do dia a dia, como um assistente pessoal que cuida de agenda e e-mail e uma plataforma de aprendizado multi-tenant.',
+  'Hoje atuo como engenheiro de software sênior no mercado financeiro. Ao longo da carreira desenvolvi e mantive sistemas de alta complexidade e missão crítica, sempre com foco em soluções escaláveis e eficientes.',
+  'Trabalho principalmente com Java (Spring Boot), PHP (Laravel) e JavaScript (Vue, Angular e React). Fui sócio da Tec\u2019 Events, onde aprendi gestão de projetos e liderança. Gosto de arquitetura de sistemas, otimização de performance e pipelines de CI/CD.',
+  'Nos meus projetos pessoais, construo produtos que colocam LLMs para resolver problemas do dia a dia, como um assistente pessoal que cuida de agenda e e-mail.',
 ];
 
-// Linha do tempo montada a partir do histórico do GitHub. Ajuste com cargos/empresas reais.
+// Trajetória (fonte: LinkedIn).
 export const timeline = [
-  { year: '2015', text: 'Primeiros projetos públicos: apps web em PHP e um serviço em Java.' },
-  { year: '2021', text: 'Controle financeiro com Vue, Spring Boot e app mobile em Ionic.' },
-  { year: '2023', text: 'APIs em Laravel e front em Angular com formulários reativos.' },
-  { year: '2026', text: 'Produtos com IA: Spring AI, Laravel 13 e assistentes com LLM.' },
+  { period: '2026 — hoje', role: 'Engenheiro de software sênior', company: 'B3' },
+  { period: '2025 — 2026', role: 'Desenvolvedor sênior', company: 'Midway' },
+  { period: '2020 — 2025', role: 'Desenvolvedor pleno → sênior', company: 'B3' },
+  { period: '2018 — 2021', role: 'Sócio', company: 'Tec\u2019 Events' },
+  { period: '2018 — 2020', role: 'Desenvolvedor júnior → pleno', company: 'Grupo GFT' },
+  { period: '2017', role: 'Programador júnior', company: 'Auto Geral' },
+  { period: '2015 — 2017', role: 'Desenvolvedor web', company: 'J. Computação' },
 ];
 
 export type StackItem = { name: string; icon: SimpleIcon };
@@ -66,6 +73,8 @@ export const stack: StackGroup[] = [
     title: 'Front-end',
     items: [
       { name: 'Vue 3', icon: siVuedotjs },
+      { name: 'Angular', icon: siAngular },
+      { name: 'React', icon: siReact },
       { name: 'TypeScript', icon: siTypescript },
       { name: 'Inertia', icon: siInertia },
       { name: 'Tailwind', icon: siTailwindcss },

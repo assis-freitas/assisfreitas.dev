@@ -1,5 +1,6 @@
 ---
-import { about, stack, summary, timeline } from '../data/site';
+import { about, site, stack, summary, timeline } from '../data/site';
+import Icon from './Icon.astro';
 ---
 
 <section id="sobre" class="section">
@@ -12,16 +13,21 @@ import { about, stack, summary, timeline } from '../data/site';
           {about.map((p, i) => <p data-reveal style={`--i:${i + 2}`}>{p}</p>)}
         </div>
       </div>
-      <ol class="timeline" aria-label="Linha do tempo">
-        {
-          timeline.map((t, i) => (
-            <li data-reveal style={`--i:${i + 1}`}>
-              <span class="year mono">{t.year}</span>
-              <span>{t.text}</span>
-            </li>
-          ))
-        }
-      </ol>
+      <div>
+        <h3 class="tl-title mono" data-reveal>trajetória</h3>
+        <ol class="timeline" aria-label="Trajetória profissional">
+          {
+            timeline.map((t, i) => (
+              <li data-reveal style={`--i:${i + 1}`}>
+                <span class="year mono">{t.period}</span>
+                <span class="role">{t.role}</span>
+                <span class="company">{t.company}</span>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="loc mono" data-reveal><Icon name="pin" size={15} /> {site.location}</p>
+      </div>
     </div>
   </div>
 </section>
@@ -83,7 +89,7 @@ import { about, stack, summary, timeline } from '../data/site';
     position: relative;
     display: grid;
     gap: 2px;
-    padding-bottom: 26px;
+    padding-bottom: 20px;
     color: var(--muted);
     font-size: 15.5px;
   }
@@ -100,14 +106,35 @@ import { about, stack, summary, timeline } from '../data/site';
     background: var(--bg);
     border: 1px solid var(--fg);
   }
-  .timeline li:last-child::before {
+  .timeline li:first-child::before {
     background: var(--accent);
     border-color: var(--accent);
   }
   .year {
+    font-size: 12.5px;
+  }
+  .role {
     color: var(--fg);
     font-weight: 600;
-    font-size: 14px;
+  }
+  .company {
+    font-size: 14.5px;
+  }
+  .tl-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin: 4px 0 18px;
+  }
+  .loc {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 26px 0 0;
+    font-size: 13px;
+    color: var(--muted);
   }
 
   .alt {
