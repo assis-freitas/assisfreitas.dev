@@ -69,7 +69,7 @@ export const stack: { id: StackGroupId; items: StackItem[] }[] = [
   },
 ];
 
-export type ProjectId = 'chico' | 'ialearn' | 'token';
+export type ProjectId = 'estante' | 'chico' | 'ialearn' | 'token';
 
 export type Project = {
   id: ProjectId;
@@ -83,6 +83,14 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: 'estante',
+    name: 'Estante',
+    icon: 'library',
+    tags: ['Laravel', 'Inertia', 'Vue 3', 'TypeScript', 'DDD', 'Pest'],
+    open: true,
+    repo: 'https://github.com/assis-freitas/estante',
+  },
   { id: 'chico', name: 'Chico AI', icon: 'bot', tags: ['Vue 3', 'Spring Boot', 'Spring AI', 'PostgreSQL', 'Redis'], open: false },
   { id: 'ialearn', name: 'IA Learn', icon: 'book', tags: ['Laravel 13', 'Inertia', 'Vue 3', 'PostgreSQL'], open: false },
   { id: 'token', name: 'TokenConverter', icon: 'coins', tags: ['Laravel', 'Vue 3', 'TypeScript', 'Docker'], open: false },

@@ -120,6 +120,8 @@ export const content: Record<Lang, Content> = {
       code: 'Código',
       soon: 'Projetos abertos, pequenos e com demo no ar estão a caminho. Enquanto isso, os projetos acima são privados, mas posso mostrar mais numa conversa.',
       items: {
+        estante:
+          'Biblioteca pessoal: cadastre livros pelo ISBN e acompanhe suas leituras, com notas e anotações. Feita com DDD pragmático e regras de arquitetura garantidas por testes.',
         chico:
           'Assistente pessoal com dashboard e interface conversacional: integra Google Calendar e Gmail, cria lembretes e manda um digest diário de notícias.',
         ialearn:
@@ -202,6 +204,8 @@ export const content: Record<Lang, Content> = {
       code: 'Code',
       soon: 'Small, open-source projects with live demos are on the way. Meanwhile, the projects above are private, but I’m happy to show more in a conversation.',
       items: {
+        estante:
+          'A personal library: add books by ISBN and track your reading, with ratings and notes. Built with pragmatic DDD and architecture rules enforced by tests.',
         chico:
           'Personal assistant with a dashboard and chat interface: integrates Google Calendar and Gmail, sets reminders and sends a daily news digest.',
         ialearn:
@@ -284,6 +288,8 @@ export const content: Record<Lang, Content> = {
       code: 'Código',
       soon: 'Proyectos abiertos, pequeños y con demo en vivo están en camino. Mientras tanto, los proyectos de arriba son privados, pero puedo mostrar más en una conversación.',
       items: {
+        estante:
+          'Biblioteca personal: agrega libros por ISBN y sigue tus lecturas, con calificaciones y notas. Hecha con DDD pragmático y reglas de arquitectura garantizadas por tests.',
         chico:
           'Asistente personal con dashboard e interfaz conversacional: integra Google Calendar y Gmail, crea recordatorios y envía un resumen diario de noticias.',
         ialearn:
